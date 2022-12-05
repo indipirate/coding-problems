@@ -27,7 +27,7 @@ class Result {
      */
 
     public static String timeConversion(String s) {
-
+        return "";
 
     }
 
