@@ -1,19 +1,10 @@
-import java.io.*;
+import java.io.IOException;
 
 public class AmPmTo24Hour {
     public static void main(String[] args) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
-        String s = bufferedReader.readLine();
 
-        String result = Result.timeConversion(s);
-
-        bufferedWriter.write(result);
-        bufferedWriter.newLine();
-
-        bufferedReader.close();
-        bufferedWriter.close();
+        String result = Result.timeConversion("07:05:45PM");
     }
 }
 
@@ -27,7 +18,17 @@ class Result {
      */
 
     public static String timeConversion(String s) {
-        return "";
+        int len = s.length();
+        String amPm = s.substring(len - 2, len);
+        String res = "";
+        int hour = Integer.parseInt(s.substring(0, 2));
+        if (hour == 12) hour = 0;
+        if (amPm.equals("PM")) {
+            hour += 12;
+        }
+        res = (hour < 10 ? "0" : "").concat(String.valueOf(hour).concat(s.substring(2, len - 2)));
+        System.out.println(res);
+        return res;
 
     }
 
